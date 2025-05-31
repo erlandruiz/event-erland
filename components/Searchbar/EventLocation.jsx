@@ -15,6 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import {BiMap} from 'react-icons/bi'
+
 const EventLocation = () => {
   const { events, selectedLocation, setSelectedLocation } =
     useContext(EventContext);
@@ -47,7 +49,11 @@ const EventLocation = () => {
   // console.log(uniqueLocations);
 
   return (
-    <div>
+    <div className="flex items-center gap-[10px] w-full xl:w-[190px] select-none">
+      {/**Icon */}
+      <div className="text-log textaccent">
+        <BiMap/>
+      </div>
       <Select
         value={selectedLocation}
         onValueChange={(value) => setSelectedLocation(value)}

@@ -16,6 +16,7 @@ const EventProvider = ({ children }) => {
 
   const [showEvenList, setShowEventList] = useState(false);
   const [selectedLocation , setSelectedLocation] = useState("")
+  const [selectedDate , setSelectedDate] = useState("")
 
 //searchTerm: almacena el término de búsqueda actual.
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +25,8 @@ const EventProvider = ({ children }) => {
   //appliedFilters: almacena los filtros aplicados cuando se hace un submit (por ejemplo, el término de búsqueda confirmado).
   const [appliedFilters, setAppliedFilters] = useState({
     searchTerm: "",
-    selectedLocation:""
+    selectedLocation:"",
+    selectedDate:null
   });
 
   //filtered events based on the applied filters
@@ -87,7 +89,7 @@ const EventProvider = ({ children }) => {
   const handleSubmit = () => {
     setIsLoading(true);
     setShowEventList(true);
-    setAppliedFilters({ searchTerm, selectedLocation });
+    setAppliedFilters({ searchTerm, selectedLocation, selectedDate });
 
     setTimeout(() => {
       setIsLoading(false)
@@ -99,7 +101,8 @@ const EventProvider = ({ children }) => {
   const handleClearSearch = () => {
     setSearchTerm("");
     setShowEventList(false);
-    selectedLocation("")
+    selectedLocation("");
+    selectedDate(null);
   };
 
 
@@ -120,7 +123,9 @@ const EventProvider = ({ children }) => {
         handleClearSearch,
         showEvenList,
         selectedLocation,
-        setSelectedLocation
+        setSelectedLocation,
+        selectedDate,
+        setSelectedDate
       }}
     >
       {children}

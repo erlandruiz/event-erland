@@ -2,6 +2,7 @@ import { useContext } from "react";
 import EventSearch from "./EventSearch";
 import { EventContext } from "@/contexts/EventContext";
 import EventLocation from "./EventLocation";
+import EventDate from "./EventDate";
 
 const Searchbar = () => {
   const { handleSubmit } = useContext(EventContext);
@@ -13,7 +14,7 @@ const Searchbar = () => {
       {/*event Location*/}
       <EventLocation/>
       {/*event Date*/}
-      <div>Event Date </div>
+      <EventDate/>
       {/*event Type*/}
       <div>Event Type </div>
       {/*Submit btn*/}
