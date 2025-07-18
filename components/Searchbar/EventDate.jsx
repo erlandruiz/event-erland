@@ -16,15 +16,19 @@ const EventDate = () => {
     setSelectedDate(date);
   };
   return (
-    <div>
+    <div className="flex w-full items-center gap-[10px] xl:w-[190px]">
+      <div className="text-lg textaccent">
+        <BiCalendar />
+      </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button>
+          <Button className="w-full justify-start p-0 bg-transparent hover:bg-transparent">
             {selectedDate ? (
               format(selectedDate, "PPP")
             ) : (
               <span>Seleccione Fecha</span>
             )}
+             
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0 btn-secondary border-0 text-white">
@@ -33,9 +37,12 @@ const EventDate = () => {
             selected={selectedDate}
             onSelect={handleDateChange}
             initialFocus
-           
           />
+       
         </PopoverContent>
+        <div className="text-[26px]">
+          <BiChevronDown />
+        </div>
       </Popover>
     </div>
   );

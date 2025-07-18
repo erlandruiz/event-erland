@@ -15,25 +15,35 @@ const EventProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const [showEvenList, setShowEventList] = useState(false);
-  const [selectedLocation , setSelectedLocation] = useState("")
-  const [selectedDate , setSelectedDate] = useState("")
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedType, setSelectedType] = useState("");
 
-//searchTerm: almacena el término de búsqueda actual.
+  //searchTerm: almacena el término de búsqueda actual.
   const [searchTerm, setSearchTerm] = useState("");
 
   // applied fiklters (after submit)
   //appliedFilters: almacena los filtros aplicados cuando se hace un submit (por ejemplo, el término de búsqueda confirmado).
   const [appliedFilters, setAppliedFilters] = useState({
     searchTerm: "",
-    selectedLocation:"",
-    selectedDate:null
+    selectedLocation: "",
+    selectedDate: null,
+    selectedType,
   });
 
   //filtered events based on the applied filters
   //Filtrado de eventos
-//Filtra los eventos según el searchTerm confirmado en appliedFilters.
-  const filteredEvents = useMemo(() => {//Usa useMemo para optimizar el filtrado.
+  //Filtra los eventos según el searchTerm confirmado en appliedFilters.
+  const filteredEvents = useMemo(() => {
+    //Usa useMemo para optimizar el filtrado.
+    const today = new Date();
+    //colocar fecha de mes dia año
     return events.filter((event) => {
+      //check event date (exclude past events)
+      const eventDate = new Date(event.date);
+
+      if (eventDate < today) return false;
+
       //check search termns
       const matchesSearch = appliedFilters.searchTerm
         ? event.title
@@ -41,26 +51,31 @@ const EventProvider = ({ children }) => {
             .includes(appliedFilters.searchTerm.toLowerCase())
         : true;
 
-          //check location
-      const matchesLocation = appliedFilters.selectedLocation ? event.location.toLowerCase() === appliedFilters.selectedLocation.toLowerCase() : true ;
+      //check location
+      const matchesLocation = appliedFilters.selectedLocation
+        ? event.location.toLowerCase() ===
+          appliedFilters.selectedLocation.toLowerCase()
+        : true;
 
-      
-      return matchesSearch && matchesLocation;
+      //Check date
+      const matchesDate = appliedFilters.selectedDate
+        ? eventDate.toDateString() ===
+          new Date(appliedFilters.selectedDate).toDateString()
+        : true;
 
+      //check Type
+      const matchesType = appliedFilters.selectedType
+        ? event.type.toLowerCase() === appliedFilters.selectedType.toLowerCase()
+        : true;
 
+      return matchesSearch && matchesLocation && matchesDate && matchesType;
     });
-
-
-
-
-
-
   }, [events, appliedFilters]);
-
 
   //fetch events
   //Carga de eventos desde el servidor
-  useEffect(() => { //Llama una sola vez al iniciar.
+  useEffect(() => {
+    //Llama una sola vez al iniciar.
     const fetchEvents = async () => {
       //start loader
       setIsLoading(true);
@@ -82,19 +97,22 @@ const EventProvider = ({ children }) => {
     fetchEvents();
   }, []);
 
+  //Funciones para búsqueda
 
-//Funciones para búsqueda
-
-//Aplica el filtro cuando se hace submit.
+  //Aplica el filtro cuando se hace submit.
   const handleSubmit = () => {
     setIsLoading(true);
     setShowEventList(true);
-    setAppliedFilters({ searchTerm, selectedLocation, selectedDate });
+    setAppliedFilters({
+      searchTerm,
+      selectedLocation,
+      selectedDate,
+      selectedType,
+    });
 
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
     }, 2500);
-   
   };
 
   //Limpia el término de búsqueda.
@@ -103,8 +121,8 @@ const EventProvider = ({ children }) => {
     setShowEventList(false);
     selectedLocation("");
     selectedDate(null);
+    setSelectedType("");
   };
-
 
   //Provisión del contexto
 
@@ -125,7 +143,9 @@ const EventProvider = ({ children }) => {
         selectedLocation,
         setSelectedLocation,
         selectedDate,
-        setSelectedDate
+        setSelectedDate,
+        selectedType,
+        setSelectedType,
       }}
     >
       {children}

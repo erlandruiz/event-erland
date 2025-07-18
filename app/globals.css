@@ -53,7 +53,9 @@
 
 /* Backgrounds personalizados */
 .bg-hero-1 {
+
   background-image: url("/assets/hero/hero-bg1.png");
+
 }
 .bg-hero-2 {
   background-image: url("/assets/hero/hero-bg2.png");
@@ -67,7 +69,9 @@
 .font-primary {
   font-family: var(--font-primary);
 }
-
+.bgprimary{
+  background: var(--color-primary);
+}
 .font-secondary {
   font-family: var(--font-secondary);
 }

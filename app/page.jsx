@@ -4,6 +4,7 @@ import Searchbar from "@/components/Searchbar/Searchbar";
 import EventList from "@/components/Events/EventList";
 import { useContext } from "react";
 import { EventContext } from "@/contexts/EventContext";
+import Hero from "@/components/Hero";
 
 const Home = () => {
   const { showEvenList, handleClearSearch } = useContext(EventContext);
@@ -11,11 +12,9 @@ const Home = () => {
   return (
     <div>
       <div className="flex flex-col justify-center items-center">
-        <Searchbar />
-        {/**Clear search */}
-        <button className="textaccent" onClick={() => handleClearSearch()}>
-          clear search
-        </button>
+      <Hero/>
+  
+      
       </div>
 
       {showEvenList ? (
