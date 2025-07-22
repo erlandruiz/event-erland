@@ -16,13 +16,13 @@ const EventDate = () => {
     setSelectedDate(date);
   };
   return (
-    <div className="flex w-full items-center gap-[10px] xl:w-[190px]">
+    <div className="flex items-center gap-[10px] xl:w-[190px] w-full">
       <div className="text-lg textaccent">
         <BiCalendar />
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button className="w-full justify-start p-0 bg-transparent hover:bg-transparent">
+          <Button className="justify-start p-0 bg-transparent hover:bg-transparent">
             {selectedDate ? (
               format(selectedDate, "PPP")
             ) : (

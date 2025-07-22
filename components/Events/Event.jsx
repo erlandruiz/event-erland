@@ -13,7 +13,7 @@ const Event = ({ event }) => {
           className="rounded-2xl object-cover"
         />
         <div
-          className="absolute -bottom-[24px] left-4 bg
+          className="absolute -bottom-[24px] left-4 
         btn-accent w-[110px] h-[48px] text-[13px] uppercase font-medium rounded-full flex items-center justify-center"
         >
           {event.type}
@@ -25,7 +25,7 @@ const Event = ({ event }) => {
           <div className="flex items-center gap-3 textaccent mb-2">
             <div className="flex items-center gap-1">
               <BiCalendar />
-              {/**HArcvoded date -change it later */}
+              {/**HArcoded date -change it later */}
               <div className="text-[15px]">15.06.25</div>
             </div>
             <div className="flex items-center gap-1">

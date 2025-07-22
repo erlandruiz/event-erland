@@ -119,8 +119,8 @@ const EventProvider = ({ children }) => {
   const handleClearSearch = () => {
     setSearchTerm("");
     setShowEventList(false);
-    selectedLocation("");
-    selectedDate(null);
+    setSelectedLocation("");
+    setSelectedDate(null);
     setSelectedType("");
   };
 

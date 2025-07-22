@@ -30,7 +30,7 @@ const Hero = () => {
               onClick={() => handleClearSearch()}
               type="button"
             >
-              clear search
+              Limpiar Buscador
             </button>
           </div>
         </div>
