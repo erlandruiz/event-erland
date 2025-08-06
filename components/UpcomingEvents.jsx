@@ -42,20 +42,57 @@ const UpcomingEvents = () => {
 
   return (
     <section className="mb-16">
-        <div className="mb-12 text-center">
-            <h3 className="pretitle">Próximos</h3>
-            <h2 className="h2">Eventos de Gran Concurrencia</h2>
-        </div>
+      <div className="mb-12 text-center">
+        <h3 className="pretitle">Próximos</h3>
+        <h2 className="h2">Eventos de Gran Concurrencia</h2>
+      </div>
       <div className="flex flex-col xl:flex-row items-center justify-between mb-12">
-        <Tabs value={eventValue} onValueChange={setEventValue} className="bg-none w-full max-w-[600px] h-full flex justify-center items-center mb-12 xl:mb-0">
-          <TabsList>
+        <Tabs
+          value={eventValue}
+          onValueChange={setEventValue}
+          className="bg-none w-full max-w-[600px] h-full flex justify-center items-center mb-12 xl:mb-0"
+        >
+          <TabsList className="flex flex-col lg:flex-row gap-6 bg-transparent w-full h-full">
             <TabsTrigger value="all">Todos</TabsTrigger>
-            <TabsTrigger value="sport">Deportes</TabsTrigger>
-            <TabsTrigger value="music">Música</TabsTrigger>
-            <TabsTrigger value="food">Comida</TabsTrigger>
-            <TabsTrigger value="art">Arte</TabsTrigger>
+            <TabsTrigger value="sport">
+              <Image
+                src={"/assets/upcoming/sport.svg"}
+                width={18}
+                height={18}
+                alt="Deportes"
+              />
+              Deportes
+            </TabsTrigger>
+            <TabsTrigger value="music">
+              <Image
+                src={"/assets/upcoming/music.svg"}
+                width={18}
+                height={18}
+                alt="musica"
+              />
+              Música
+            </TabsTrigger>
+            <TabsTrigger value="food">
+              <Image
+                src={"/assets/upcoming/food.svg"}
+                width={18}
+                height={18}
+                alt="comida"
+              />
+              Comida
+            </TabsTrigger>
+            <TabsTrigger value="art">
+              <Image
+                src={"/assets/upcoming/art.svg"}
+                width={18}
+                height={18}
+                alt="arte"
+              />
+              Arte
+            </TabsTrigger>
           </TabsList>
         </Tabs>
+        <Link href={""} className="uppercase border-b-2 accent text-sm font-semibold text-accent">Ver todos los eventos</Link>
       </div>
       {/* slider */}
       {filteredEvents.length > 0 ? (
@@ -74,7 +111,7 @@ const UpcomingEvents = () => {
           {filteredEvents.map((filteredEvent, index) => {
             return (
               <SwiperSlide key={index} className="select-none">
-                <Link href="">
+                <Link href={`/event/${filteredEvent.id}`}>
                   <Event event={filteredEvent} />
                 </Link>
               </SwiperSlide>
@@ -84,7 +121,6 @@ const UpcomingEvents = () => {
       ) : (
         <SkelentonGrid itemCount={4} />
       )}
-   
     </section>
   );
 };

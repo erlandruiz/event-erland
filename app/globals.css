@@ -63,7 +63,18 @@
 .bg-pattern {
   background-image: url("/assets/pattern_bg.png");
 }
+.accent {
+  color:  var(--color-accent);
+}
 
+.primary{
+  color: var(--color-primary);
+}
+
+
+.secondary{
+  color: var(--color-secondary);
+}
 
 
 .font-primary {
@@ -71,6 +82,9 @@
 }
 .bgprimary{
   background: var(--color-primary);
+}
+.bggrey{
+  background-color: var(--color-grey);
 }
 .font-secondary {
   font-family: var(--font-secondary);
@@ -203,3 +217,9 @@ h1 ,h2,h3,h4,h5,h6{
     font-size: 46px; /* xl:text-[46px] */
   }
 }
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+  background-color: var(--color-accent);
+}
+

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LogoErland from "./Me/LogoErland";
 const Header =()=>{
     return(
         <header className="absolute left-0 right-0 z-10">
@@ -7,7 +8,8 @@ const Header =()=>{
             <div className="flex justify-between items-center h-full">
                 {/* logo */}
                 <Link href="/">
-                <Image src={"/assets/header/logo.svg"} width={70} height={70} alt=""/>
+                {/* <Image src={"/assets/header/logo.svg"} width={70} height={70} alt=""/> */}
+                <LogoErland color="textaccent" />
                 </Link>
                 <div className="flex gap-4">
                     <button className="btn btn-tertiary">sign in </button>

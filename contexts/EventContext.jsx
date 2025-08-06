@@ -124,6 +124,18 @@ const EventProvider = ({ children }) => {
     setSelectedType("");
   };
 
+
+  const formatDate =(dateString)=>{
+    const date = new Date(dateString);
+    //opciones de formato
+    const options = {weekday: "short", month:"short", day:"numeric"};
+    //retorno de fecha con formato
+    return(
+      // date.toLocaleDateString("en-US", options)
+      date.toLocaleDateString("es-PE", options)
+    )
+
+  }
   //Provisión del contexto
 
   //Aquí compartes todos los valores y funciones a los componentes hijos.
@@ -146,6 +158,7 @@ const EventProvider = ({ children }) => {
         setSelectedDate,
         selectedType,
         setSelectedType,
+        formatDate
       }}
     >
       {children}

@@ -3,6 +3,8 @@ import { useContext } from "react";
 import Event from "./Event";
 import SkelentonGrid from "../SkeletonGrid";
 
+import Link from "next/link";
+
 const EventList = () => {
   const { filteredEvents, isLoading, error } = useContext(EventContext);
   if (error) return <p>Error:{error}</p>; //eroor message
@@ -23,12 +25,16 @@ const EventList = () => {
   } else {
     return (
       <div>
-        <h4 className="h4 mb-6">{filteredEvents.length} Resultados encontrados.</h4>
+        <h4 className="h4 mb-6">
+          {filteredEvents.length} Resultados encontrados.
+        </h4>
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-[30px] mb-32">
           {filteredEvents.map((filteredEvent, index) => {
             return (
               <div key={index}>
-                <Event event={filteredEvent} />
+                <Link href={`/event/${filteredEvent.id}`}>
+                  <Event event={filteredEvent} />
+                </Link>
               </div>
             );
           })}
